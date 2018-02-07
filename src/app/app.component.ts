@@ -6,6 +6,7 @@ import Student from './Models/Student.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   title = 'app';
   Students;
