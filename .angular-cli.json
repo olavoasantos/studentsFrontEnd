@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "students"
+    "name": "students",
+    "ejected": true
   },
   "apps": [
     {
@@ -19,6 +20,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "./node_modules/font-awesome/scss/font-awesome.scss",
         "styles.scss"
       ],
       "scripts": [],
@@ -55,6 +57,7 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {}
+    "component": {
+    }
   }
 }

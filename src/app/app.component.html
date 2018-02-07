@@ -1,20 +1,32 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container mx-auto pt-8">
+    <div class="my-8">
+        <button class="px-8 py-4 mr-4 text-white bg-primary hover:bg-primary-light rounded" (click)="login()">Login</button>
+    </div>
+    <div class="flex flex-col">
+        <label class="font-bold text-sm">Name</label>
+        <input class="p-2 border mb-4" type="text" [(ngModel)]="form.name" />
+        <label class="font-bold text-sm">Birthday</label>
+        <input class="p-2 border mb-4" type="text" [(ngModel)]="form.birthday" />
+        <label class="font-bold text-sm">Grade</label>
+        <input class="p-2 border mb-4" type="number" min="1" max="9" [(ngModel)]="form.grade" />
+      
+        <button class="px-8 py-4 text-white bg-primary hover:bg-primary-light rounded" (click)="addStudent()">ADD STUDENT</button>
+      </div>
+      
+      <hr class="h-px my-8 bg-grey">
 
+      <div class="flex">
+          <button class="px-8 py-4 mr-4 text-white bg-primary hover:bg-primary-light rounded" (click)="findStudent(1)">Find 1</button>
+      </div>
+      
+      <hr class="h-px my-8 bg-grey">
+      
+      <div class="flex flex-wrap justify-between">
+        <div *ngFor="let student of Students; let id = index"
+             (click)="destroyStudent(id)"
+             class="flex items-center w-1/3 justify-between p-4 border shadow rounded">
+          <h1>{{ student.name }}</h1>
+          <h3><small>{{ student.birthday }} <br> {{ student.grade }}o ano</small></h3>
+        </div>
+      </div>    
+</div>
