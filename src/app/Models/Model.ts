@@ -1,19 +1,20 @@
-import Errors from './Errors';
+import axios from 'axios';
+
+const getToken = () => {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+}
 
 export default class Model {
   
   public id:         number;
   public $data:      object;
-  public errors:     object;
   public url:        string;
   public static url: string;
   
-  public form = {};
+  public form;
 
-  constructor(data: object) {
-    this.hydrate(data);
+  constructor(data: object = {}) {
     this.$data = data;
-    this.errors = new Errors;
   }
 
   protected hydrate(data: object) {
@@ -31,6 +32,7 @@ export default class Model {
     let Collection = [];
     
     return new Promise((resolve, reject) => {
+      getToken();
       axios.get(this.url)
       .then(response => {
         Collection = response.data.map(
@@ -46,6 +48,7 @@ export default class Model {
   }
 
   public static find(id) {
+    getToken();
     return new Promise((resolve, reject) => {
       axios.get(`${this.url}/${id}`)
       .then(response => {
@@ -58,20 +61,22 @@ export default class Model {
   }
 
   public static store(data) {
+    getToken();
     return new Promise((resolve, reject) => {
       axios.post(this.url, data)
       .then(response => {
         resolve(new this(response.data));
       })
       .catch(error => {
-        reject( new Errors(error.response.data) );
+        reject( error.response.data );
       });
     });
   }
 
   public update() {
+    getToken();
     return new Promise((resolve, reject) => {
-      axios.patch(`${this.url}/${this.id}`)
+      axios.patch(`${this.url}/${this.id}`, this.form)
       .then(response => {
         this.hydrate(response.data);
         this.$data = response.data;
@@ -79,12 +84,13 @@ export default class Model {
         resolve(this);
       })
       .catch(error => {
-        reject( new Errors(error.response.data) );
+        reject( error.response.data );
       });
     });
   }
 
   public delete() {
+    getToken();
     return new Promise((resolve, reject) => {
       axios.delete(`${this.url}/${this.id}`)
       .then(response => {

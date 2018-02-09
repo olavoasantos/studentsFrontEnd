@@ -4,9 +4,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-import axios from 'axios';
-axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
-window.axios = axios;
+import Store from './app/plugins/Store'
+window['$store'] = new Store;
 
 if (environment.production) {
   enableProdMode();

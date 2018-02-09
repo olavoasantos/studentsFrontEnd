@@ -1,32 +1,9 @@
-<div class="container mx-auto pt-8">
-    <div class="my-8">
-        <button class="px-8 py-4 mr-4 text-white bg-primary hover:bg-primary-light rounded" (click)="login()">Login</button>
-    </div>
-    <div class="flex flex-col">
-        <label class="font-bold text-sm">Name</label>
-        <input class="p-2 border mb-4" type="text" [(ngModel)]="form.name" />
-        <label class="font-bold text-sm">Birthday</label>
-        <input class="p-2 border mb-4" type="text" [(ngModel)]="form.birthday" />
-        <label class="font-bold text-sm">Grade</label>
-        <input class="p-2 border mb-4" type="number" min="1" max="9" [(ngModel)]="form.grade" />
-      
-        <button class="px-8 py-4 text-white bg-primary hover:bg-primary-light rounded" (click)="addStudent()">ADD STUDENT</button>
-      </div>
-      
-      <hr class="h-px my-8 bg-grey">
+<div class="h-full flex flex-col">
+    <app-navbar></app-navbar>
 
-      <div class="flex">
-          <button class="px-8 py-4 mr-4 text-white bg-primary hover:bg-primary-light rounded" (click)="findStudent(1)">Find 1</button>
-      </div>
-      
-      <hr class="h-px my-8 bg-grey">
-      
-      <div class="flex flex-wrap justify-between">
-        <div *ngFor="let student of Students; let id = index"
-             (click)="destroyStudent(id)"
-             class="flex items-center w-1/3 justify-between p-4 border shadow rounded">
-          <h1>{{ student.name }}</h1>
-          <h3><small>{{ student.birthday }} <br> {{ student.grade }}o ano</small></h3>
-        </div>
-      </div>    
+    <div class="p-4 flex-1 overflow-y-scroll">
+        <app-student-index *ngIf="window['$store'].state.route === 'index'"></app-student-index>
+        <app-student-form *ngIf="window['$store'].state.route === 'form'"></app-student-form>
+        <app-student-view *ngIf="window['$store'].state.route === 'show'"></app-student-view>
+    </div>
 </div>

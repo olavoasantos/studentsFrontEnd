@@ -16,7 +16,7 @@ export default class Errors {
 
   public get(field: string) {
     return this.has(field) ? this.errors[field]
-                           : [];
+                           : this.errors;
   }
 
   public push(field: string, value: string) {

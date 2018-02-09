@@ -17,9 +17,30 @@ export default class Student extends Model {
   static url = url;
 
   public form = {
+    action: 'create',
     name: '',
     birthday: '',
-    grade: null
+    grade: null,
+    mother: {
+      name: '',
+      cpf: null,
+      charge_at: ''
+    },
+    address: {
+      postal_code: null,
+      street: '',
+      number: null,
+      complement: '',
+      neighborhood: '',
+      city: '',
+      state: ''
+    }
+  }
+
+  constructor(data: object = {}) {
+    super(data);
+    this.form['actions'] = 'edit';
+    this.hydrate(data);
   }
 
 }
