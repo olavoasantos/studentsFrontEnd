@@ -19,25 +19,32 @@
   </div>
 
   <div class="student:data mb-4 flex flex-col border p-4 rounded shadow">
-      <h2 class="mb-4">Dados da mãe</h2>
+    <h2 class="mb-4">Dados da mãe</h2>
+    <div class="student:data flex my-2">
+      <i class="fa fa-female w-8 mr-4"></i> <span class="tracking-wide">{{ student.mother.name }}</span>
+    </div>
+    <div class="student:data flex my-2">
+      <i class="fa fa-id-card-o w-8 mr-4"></i> <span>{{ student.mother.cpf }}</span>
+    </div>
+  </div>
+
+  <div class="student:data mb-4 flex flex-col border p-4 rounded shadow">
+      <h2 class="mb-4">Financeiro</h2>
       <div class="student:data flex my-2">
-        <i class="fa fa-female w-8 mr-4"></i> <span class="tracking-wide">{{ student.mother.name }}</span>
-      </div>
-      <div class="student:data flex my-2">
-        <i class="fa fa-id-card-o w-8 mr-4"></i> <span>{{ student.mother.cpf }}</span>
+        <i class="fa fa-credit-card w-8 mr-4"></i> <span class="tracking-wide">Cobrança todo <strong>dia {{ student.mother.charge_at }}</strong> do mês</span>
       </div>
     </div>
 
-    <div class="student:data mb-4 flex flex-col border p-4 rounded shadow">
-        <h2 class="mb-4">Endereço</h2>
-        <div class="student:data flex my-2">
-          <i class="fa fa-home w-8 mr-4"></i>
-          <span class="tracking-wide">
-            {{ student.address.street }}, {{ student.address.number }}
-            {{ (student.address.complement) ? ' - ' + student.address.complement : '' }}
-            <br>
-            {{ student.address.neighborhood }} - {{ student.address.postal_code }} - {{ student.address.city }}-{{ student.address.state }}
-          </span>
-        </div>
-      </div>
+  <div class="student:data mb-4 flex flex-col border p-4 rounded shadow">
+    <h2 class="mb-4">Endereço</h2>
+    <div class="student:data flex my-2">
+      <i class="fa fa-home w-8 mr-4"></i>
+      <span class="tracking-wide">
+        {{ student.address.street }}, {{ student.address.number }}
+        {{ (student.address.complement) ? ' - ' + student.address.complement : '' }}
+        <br>
+        {{ student.address.neighborhood }} - {{ student.address.postal_code }} - {{ student.address.city }}-{{ student.address.state }}
+      </span>
+    </div>
+  </div>
 </div>
